@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenstack - Agentic Cloud Solution Provider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0066ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #f5f9ff 0%, #f0f5ff 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 153, 204, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: #0066ff;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #0066ff;
+            border: 2px solid #0066ff;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f9ff;
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #0066ff;
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: linear-gradient(135deg, #f5f9ff 0%, #f0f5ff 100%);
+            padding: 6rem 2rem;
+        }
+
+        .how-it-works-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-contact {
+            background: white;
+            border: 2px solid #0066ff;
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .pricing-contact h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .pricing-contact p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-light {
+            background: white;
+            color: #0066ff;
+        }
+
+        .btn-light:hover {
+            background: #f5f5f5;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: #333;
+            margin: 2rem 0;
+        }
+
+        .footer-bottom {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Zenstack</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#pricing">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 style="color: #0066ff">Custom Software Built</h1>
+            <h2>Agentic Cloud Solution Provider</h2>
+            <div class="subtitle">Fast & Affordable</div>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="scrollToContact()">Learn More</button>
+                <button class="btn btn-secondary" onclick="scrollToContact()">Get Started</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Why Choose Zenstack</h2>
+        <p class="section-subtitle">We deliver quality custom software without the enterprise price tag</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Get your software built quickly with our streamlined development process and experienced team.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Cost Effective</h3>
+                <p>Quality custom software at a price that makes sense. No bloated budgets, no unnecessary costs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Tailored Solutions</h3>
+                <p>Your requirements drive our development. We build exactly what you need, nothing more, nothing less.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Expert Team</h3>
+                <p>Work with experienced developers who understand your vision and deliver results on time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Full Stack</h3>
+                <p>From web to mobile, from frontend to backend, we handle all aspects of your project.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Quality First</h3>
+                <p>Clean code, thorough testing, and best practices ensure your software stands the test of time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <div class="how-it-works-container">
+            <h2 class="section-title">Simple Process</h2>
+            <p class="section-subtitle">Get your software built in just a few steps</p>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Share Your Vision</h3>
+                    <p>Tell us about your project and requirements. We're here to listen and understand your needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get a Quote</h3>
+                    <p>We'll analyze your requirements and provide a clear, transparent quote with timeline.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Our team builds your software with regular updates and communication throughout the process.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Launch & Support</h3>
+                    <p>Your software goes live and we provide ongoing support to ensure everything runs smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">Ready to discuss your project? Contact our team today</p>
+        <div class="pricing-contact">
+            <h3>Let's Talk About Your Project</h3>
+            <p>Get a custom quote tailored to your specific requirements. Our team is ready to help bring your vision to life.</p>
+            <button class="btn btn-primary" onclick="contactSales()">Contact Us</button>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Build Your Next Project?</h2>
+        <p>Get in touch with our team to discuss your requirements and get a custom quote.</p>
+        <button class="btn btn-light" onclick="contactSales()">Start Your Project</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:sales@zenstack.ae">Sales</a>
+                <a href="mailto:support@zenstack.ae">Support</a>
+                <a href="mailto:info@zenstack.ae">Contact</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Zenstack. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToContact() {
+            const contactSection = document.getElementById('pricing');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function contactSales() {
+            window.location.href = 'mailto:sales@zenstack.ae?subject=Zenstack - Project Inquiry';
+        }
+
+        // Add smooth scroll behavior for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
