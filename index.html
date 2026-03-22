@@ -414,9 +414,22 @@
         }
 
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
             .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+                gap: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .nav-links a {
+                padding: 0.25rem 0.5rem;
+                white-space: nowrap;
             }
 
             .hero {
@@ -441,6 +454,25 @@
                 font-size: 1.8rem;
             }
         }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .nav-links a {
+                padding: 0.2rem 0.4rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -459,7 +491,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 style="color: #0066ff">Custom Software Built</h1>
+            <h1>Custom Software Built</h1>
             <h2>Agentic Cloud Solution Provider</h2>
             <div class="subtitle">Fast & Affordable</div>
             <div class="cta-buttons">
