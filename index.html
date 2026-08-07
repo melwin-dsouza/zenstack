@@ -1,627 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenstack - Agentic Cloud Solution Provider</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            color: #1a1a1a;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #0066ff;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 70px;
-            background: linear-gradient(135deg, #f5f9ff 0%, #f0f5ff 100%);
-            padding: 6rem 2rem;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            border-radius: 50%;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 153, 204, 0.08) 0%, transparent 70%);
-            bottom: -100px;
-            left: -100px;
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            z-index: 1;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-
-        .hero h2 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-            line-height: 1.2;
-            font-weight: 600;
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            color: #0066ff;
-            font-weight: 600;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #666;
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #0066ff;
-            border: 2px solid #0066ff;
-        }
-
-        .btn-secondary:hover {
-            background: #f5f9ff;
-            transform: translateY(-3px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: #0066ff;
-            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.15);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 1.5rem;
-            color: white;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            background: linear-gradient(135deg, #f5f9ff 0%, #f0f5ff 100%);
-            padding: 6rem 2rem;
-        }
-
-        .how-it-works-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #e0e0e0;
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin: 0 auto 1rem;
-        }
-
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-        }
-
-        .step p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .pricing-contact {
-            background: white;
-            border: 2px solid #0066ff;
-            border-radius: 15px;
-            padding: 4rem 2rem;
-            max-width: 600px;
-            margin: 3rem auto;
-        }
-
-        .pricing-contact h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #1a1a1a;
-        }
-
-        .pricing-contact p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #0066ff 0%, #0099cc 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .btn-light {
-            background: white;
-            color: #0066ff;
-        }
-
-        .btn-light:hover {
-            background: #f5f5f5;
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-divider {
-            height: 1px;
-            background: #333;
-            margin: 2rem 0;
-        }
-
-        .footer-bottom {
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .logo {
-                font-size: 1.4rem;
-            }
-
-            .nav-links {
-                gap: 0.8rem;
-                font-size: 0.85rem;
-            }
-
-            .nav-links a {
-                padding: 0.25rem 0.5rem;
-                white-space: nowrap;
-            }
-
-            .hero {
-                padding: 4rem 1.5rem;
-                margin-top: 60px;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.8rem 1rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .nav-links {
-                gap: 0.5rem;
-                font-size: 0.75rem;
-            }
-
-            .nav-links a {
-                padding: 0.2rem 0.4rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenstack — Custom Software, Built Right</title>
+<meta name="description" content="Melwin builds custom web and mobile software for small businesses — fast, reliable, and built to last.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1220;
+    --panel:#111B2E;
+    --line:#1F2B40;
+    --line-soft:#182338;
+    --text:#E7ECF3;
+    --muted:#8B96A8;
+    --muted-2:#5D6B82;
+    --amber:#FFB020;
+    --green:#3DD68C;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px var(--green);}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .dot{animation:pulse 2s ease-in-out infinite;}
+
+  nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(11,18,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.2rem;}
+  .nav-links{display:flex;gap:32px;list-style:none;font-size:.92rem;}
+  .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+
+  .hero{padding:180px 0 110px;text-align:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.82rem;color:var(--muted);border:1px solid var(--line);
+    padding:6px 14px;border-radius:20px;margin-bottom:28px;
+  }
+  .hero h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.3rem,5.5vw,3.6rem);line-height:1.15;letter-spacing:-.01em;
+    max-width:820px;margin:0 auto 22px;
+  }
+  .hero h1 .accent{color:var(--amber);}
+  .hero p{color:var(--muted);font-size:1.1rem;max-width:560px;margin:0 auto 36px;}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{padding:.9rem 1.8rem;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;border:1px solid transparent;text-decoration:none;display:inline-block;transition:all .2s;}
+  .btn-primary{background:var(--amber);color:#1a1206;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,176,32,.25);}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--muted);}
+
+  .section{padding:90px 0;border-top:1px solid var(--line-soft);}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 52px;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.3rem);margin-bottom:14px;letter-spacing:-.01em;}
+  .section-head p{color:var(--muted);}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .service-tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:30px 26px;transition:border-color .2s, transform .2s;}
+  .service-tile:hover{border-color:var(--muted-2);transform:translateY(-3px);}
+  .service-tile .num{font-family:var(--font-display);color:var(--amber);font-size:.85rem;margin-bottom:14px;}
+  .service-tile h3{font-family:var(--font-display);font-weight:600;font-size:1.15rem;margin-bottom:10px;}
+  .service-tile p{color:var(--muted);font-size:.9rem;}
+
+  /* WORK */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .work-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .2s, transform .2s;display:flex;flex-direction:column;}
+  .work-card:hover{border-color:var(--muted-2);transform:translateY(-3px);}
+  .work-card-top{padding:26px 24px 0;}
+  .work-card .kicker{font-size:.75rem;color:var(--green);display:flex;align-items:center;gap:7px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em;}
+  .work-card h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin-bottom:10px;}
+  .work-card p{color:var(--muted);font-size:.9rem;padding-bottom:24px;}
+  .work-card-foot{margin-top:auto;padding:16px 24px;border-top:1px solid var(--line-soft);}
+  .work-card-foot a{color:var(--amber);text-decoration:none;font-size:.88rem;font-weight:600;}
+  .work-card-foot a:hover{text-decoration:underline;}
+
+  /* PROCESS */
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .process-step{text-align:center;}
+  .process-step .n{width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;color:var(--amber);margin:0 auto 16px;}
+  .process-step h3{font-family:var(--font-display);font-size:1rem;margin-bottom:8px;}
+  .process-step p{color:var(--muted);font-size:.85rem;}
+
+  /* ABOUT */
+  .about-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .about-panel p{color:var(--muted);margin-bottom:14px;}
+  .about-panel strong{color:var(--text);font-weight:500;}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .about-stats .stat .n{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--amber);}
+  .about-stats .stat .l{font-size:.78rem;color:var(--muted-2);margin-top:4px;}
+
+  /* CONTACT */
+  .contact-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:56px;text-align:center;}
+  .contact-panel h2{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px;}
+  .contact-panel p{color:var(--muted);max-width:480px;margin:0 auto 30px;}
+
+  footer{border-top:1px solid var(--line-soft);padding:36px 0;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:.85rem;color:var(--muted-2);}
+  .footer-links{display:flex;gap:22px;list-style:none;}
+  .footer-links a{color:var(--muted);text-decoration:none;}
+  .footer-links a:hover{color:var(--text);}
+
+  @media (max-width:860px){
+    .services-grid,.work-grid,.process-grid{grid-template-columns:1fr;}
+    .about-panel{grid-template-columns:1fr;padding:32px 24px;}
+    .nav-links{display:none;}
+    .contact-panel{padding:32px 22px;}
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Zenstack</div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how">How It Works</a></li>
-                <li><a href="#pricing">Contact</a></li>
-            </ul>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Zenstack</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Available for new projects</div>
+    <h1>Custom software for small businesses that <span class="accent">actually ships.</span></h1>
+    <p>I design, build, and maintain web and mobile applications end to end — from first idea to a product your customers use every day.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Start a project</a>
+      <a href="#work" class="btn btn-ghost">See my work</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What I do</div>
+      <h2>One person, full stack</h2>
+      <p>No account managers, no handoffs between teams — you work directly with the person building your product.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-tile">
+        <div class="num">01</div>
+        <h3>Web Applications</h3>
+        <p>Custom dashboards, internal tools, and customer-facing web apps built around how your business actually works.</p>
+      </div>
+      <div class="service-tile">
+        <div class="num">02</div>
+        <h3>Mobile Apps</h3>
+        <p>iOS and Android apps that connect to the same backend as your web product — one system, every platform.</p>
+      </div>
+      <div class="service-tile">
+        <div class="num">03</div>
+        <h3>Ongoing Support</h3>
+        <p>Once it's live, I stay involved — fixes, improvements, and new features as your business grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Recent work</div>
+      <h2>Live products, not mockups</h2>
+      <p>A few things I've built and currently maintain.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-card-top">
+          <div class="kicker"><span class="dot"></span> Live</div>
+          <h3>Invoice Tracker</h3>
+          <p>A complete invoice management platform — create, track, and follow up on invoices with reporting built in.</p>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Custom Software Built</h1>
-            <h2>Agentic Cloud Solution Provider</h2>
-            <div class="subtitle">Fast & Affordable</div>
-            <div class="cta-buttons">
-                <button class="btn btn-primary" onclick="scrollToContact()">Learn More</button>
-                <button class="btn btn-secondary" onclick="scrollToContact()">Get Started</button>
-            </div>
+        <div class="work-card-foot">
+          <a href="https://invoicetracker.zenstack.ae/" target="_blank" rel="noopener">Visit site →</a>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2 class="section-title">Why Choose Zenstack</h2>
-        <p class="section-subtitle">We deliver quality custom software without the enterprise price tag</p>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Get your software built quickly with our streamlined development process and experienced team.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Cost Effective</h3>
-                <p>Quality custom software at a price that makes sense. No bloated budgets, no unnecessary costs.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Tailored Solutions</h3>
-                <p>Your requirements drive our development. We build exactly what you need, nothing more, nothing less.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤝</div>
-                <h3>Expert Team</h3>
-                <p>Work with experienced developers who understand your vision and deliver results on time.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Full Stack</h3>
-                <p>From web to mobile, from frontend to backend, we handle all aspects of your project.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Quality First</h3>
-                <p>Clean code, thorough testing, and best practices ensure your software stands the test of time.</p>
-            </div>
+      </div>
+      <div class="work-card">
+        <div class="work-card-top">
+          <div class="kicker"><span class="dot"></span> Live</div>
+          <h3>POS Dashboard</h3>
+          <p>A point-of-sale system for small retail — with matching web, iOS, and Android apps for sales and inventory.</p>
         </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how">
-        <div class="how-it-works-container">
-            <h2 class="section-title">Simple Process</h2>
-            <p class="section-subtitle">Get your software built in just a few steps</p>
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Share Your Vision</h3>
-                    <p>Tell us about your project and requirements. We're here to listen and understand your needs.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Get a Quote</h3>
-                    <p>We'll analyze your requirements and provide a clear, transparent quote with timeline.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Development</h3>
-                    <p>Our team builds your software with regular updates and communication throughout the process.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Launch & Support</h3>
-                    <p>Your software goes live and we provide ongoing support to ensure everything runs smoothly.</p>
-                </div>
-            </div>
+        <div class="work-card-foot">
+          <a href="https://app.zenstack.ae/pos-dashboard/" target="_blank" rel="noopener">Visit site →</a>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <h2 class="section-title">Get in Touch</h2>
-        <p class="section-subtitle">Ready to discuss your project? Contact our team today</p>
-        <div class="pricing-contact">
-            <h3>Let's Talk About Your Project</h3>
-            <p>Get a custom quote tailored to your specific requirements. Our team is ready to help bring your vision to life.</p>
-            <button class="btn btn-primary" onclick="contactSales()">Contact Us</button>
+      </div>
+      <div class="work-card">
+        <div class="work-card-top">
+          <div class="kicker"><span class="dot"></span> Live</div>
+          <h3>Savor</h3>
+          <p>A fully custom website built and maintained from the ground up.</p>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <h2>Ready to Build Your Next Project?</h2>
-        <p>Get in touch with our team to discuss your requirements and get a custom quote.</p>
-        <button class="btn btn-light" onclick="contactSales()">Start Your Project</button>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="mailto:sales@zenstack.ae">Sales</a>
-                <a href="mailto:support@zenstack.ae">Support</a>
-                <a href="mailto:info@zenstack.ae">Contact</a>
-            </div>
-            <div class="footer-divider"></div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Zenstack. All rights reserved. | Privacy Policy | Terms of Service</p>
-            </div>
+        <div class="work-card-foot">
+          <a href="https://savor.zenstack.ae/" target="_blank" rel="noopener">Visit site →</a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        function scrollToContact() {
-            const contactSection = document.getElementById('pricing');
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
+<!-- PROCESS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Simple, direct process</h2>
+      <p>From first conversation to a live product.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="n">1</div>
+        <h3>Share your vision</h3>
+        <p>Tell me what you need — I'll ask the right questions to understand it fully.</p>
+      </div>
+      <div class="process-step">
+        <div class="n">2</div>
+        <h3>Get a quote</h3>
+        <p>A clear, fixed quote and timeline — no surprises later.</p>
+      </div>
+      <div class="process-step">
+        <div class="n">3</div>
+        <h3>Build together</h3>
+        <p>Regular updates as your product comes together.</p>
+      </div>
+      <div class="process-step">
+        <div class="n">4</div>
+        <h3>Launch & support</h3>
+        <p>Your product goes live, and I stick around to keep it running well.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function contactSales() {
-            window.location.href = 'mailto:sales@zenstack.ae?subject=Zenstack - Project Inquiry';
-        }
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-panel">
+      <div>
+        <div class="eyebrow">About</div>
+        <p><strong>I'm Melwin</strong>, a full-stack developer based in Dubai with 7+ years of experience building software professionally.</p>
+        <p>I take on select freelance projects for small businesses that want quality software without an agency price tag — and I stay involved after launch, not just until invoice paid.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat"><div class="n">7+</div><div class="l">Years of experience</div></div>
+        <div class="stat"><div class="n">3</div><div class="l">Live products maintained</div></div>
+        <div class="stat"><div class="n">1:1</div><div class="l">Direct with the builder</div></div>
+        <div class="stat"><div class="n">Dubai</div><div class="l">Based & working</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Add smooth scroll behavior for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">Get in touch</div>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me a bit about what you're looking to build — I'll get back to you with next steps.</p>
+      <a href="mailto:hello@zenstack.ae?subject=Zenstack%20-%20Project%20Inquiry" class="btn btn-primary">Email hello@zenstack.ae</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 Zenstack. Dubai, UAE.</div>
+    <ul class="footer-links">
+      <li><a href="mailto:hello@zenstack.ae">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
 </body>
 </html>
