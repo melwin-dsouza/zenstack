@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melwin — Technical Portfolio</title>
+<meta name="description" content="Melwin — Backend-focused Full Stack Engineer. Java, Spring Boot, Kafka, AWS, Kubernetes. Technical deep dive on live projects.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1220;
+    --panel:#111B2E;
+    --panel-2:#0E1626;
+    --line:#1F2B40;
+    --line-soft:#182338;
+    --text:#E7ECF3;
+    --muted:#8B96A8;
+    --muted-2:#5D6B82;
+    --amber:#FFB020;
+    --green:#3DD68C;
+    --red:#FF6B6B;
+    --blue:#5B9DFF;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-position:-1px -1px;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* status dot */
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px var(--green);flex-shrink:0;}
+  .dot.amber{background:var(--amber);box-shadow:0 0 8px var(--amber);}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .dot.live{animation:pulse 2s ease-in-out infinite;}
+
+  .mono{font-family:var(--font-mono);}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted-2);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;width:100%;z-index:1000;
+    background:rgba(11,18,32,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.15rem;display:flex;align-items:center;gap:10px;}
+  .logo .tag{font-family:var(--font-mono);font-size:.68rem;color:var(--green);border:1px solid var(--line);padding:2px 8px;border-radius:20px;letter-spacing:.05em;}
+  .nav-links{display:flex;gap:28px;list-style:none;font-family:var(--font-mono);font-size:.82rem;}
+  .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+
+  /* HERO */
+  .hero{padding:170px 0 90px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.2rem,4.6vw,3.4rem);
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin-bottom:18px;
+  }
+  .hero h1 span{color:var(--muted);}
+  .hero p.lede{color:var(--muted);font-size:1.08rem;max-width:520px;margin-bottom:32px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:.85rem 1.6rem;border-radius:8px;font-size:.9rem;font-weight:600;
+    cursor:pointer;border:1px solid transparent;text-decoration:none;display:inline-flex;
+    align-items:center;gap:8px;font-family:var(--font-mono);transition:all .2s;
+  }
+  .btn-primary{background:var(--amber);color:#1a1206;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,176,32,.25);}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--muted);}
+
+  /* hero status panel */
+  .status-panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .status-panel-head{
+    padding:14px 18px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--font-mono);font-size:.72rem;color:var(--muted-2);
+  }
+  .status-panel-head .l{display:flex;gap:8px;align-items:center;}
+  .status-panel-body{padding:18px;}
+  .status-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:11px 0;border-bottom:1px solid var(--line-soft);
+    font-family:var(--font-mono);font-size:.82rem;
+  }
+  .status-row:last-child{border-bottom:none;}
+  .status-row .name{display:flex;align-items:center;gap:10px;color:var(--text);}
+  .status-row .val{color:var(--green);font-size:.75rem;}
+
+  /* SECTION HEADS */
+  .section{padding:90px 0;border-top:1px solid var(--line-soft);}
+  .section-head{margin-bottom:48px;max-width:640px;}
+  .section-head h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px;letter-spacing:-.01em;
+  }
+  .section-head p{color:var(--muted);}
+
+  /* PROJECT SERVICE CARDS */
+  .services{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .service-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:24px;transition:border-color .2s, transform .2s;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .service-card:hover{border-color:var(--muted-2);transform:translateY(-3px);}
+  .service-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .service-name{font-family:var(--font-display);font-weight:600;font-size:1.15rem;}
+  .service-status{
+    font-family:var(--font-mono);font-size:.68rem;color:var(--green);
+    display:flex;align-items:center;gap:6px;letter-spacing:.05em;text-transform:uppercase;
+  }
+  .service-desc{color:var(--muted);font-size:.92rem;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+  .tag{
+    font-family:var(--font-mono);font-size:.68rem;color:var(--muted);
+    border:1px solid var(--line);padding:3px 9px;border-radius:20px;
+  }
+  .service-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:14px;border-top:1px solid var(--line-soft);
+    font-family:var(--font-mono);font-size:.72rem;color:var(--muted-2);
+  }
+  .service-meta a{color:var(--amber);text-decoration:none;}
+  .service-meta a:hover{text-decoration:underline;}
+
+  /* STACK */
+  .stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .stack-group{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .stack-group h4{font-family:var(--font-mono);font-size:.7rem;color:var(--muted-2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+  .stack-group ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .stack-group li{font-size:.85rem;color:var(--text);}
+
+  /* PROCESS */
+  .process-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);}
+  .process-item{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:22px 24px;border-bottom:1px solid var(--line-soft);}
+  .process-item:last-child{border-bottom:none;}
+  .process-item .idx{font-family:var(--font-mono);color:var(--muted-2);font-size:.85rem;}
+  .process-item h3{font-family:var(--font-display);font-size:1.02rem;margin-bottom:4px;}
+  .process-item p{color:var(--muted);font-size:.88rem;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .about-grid p{color:var(--muted);margin-bottom:14px;}
+  .about-grid p strong{color:var(--text);font-weight:500;}
+  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .stat .n{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--amber);}
+  .stat .l{font-family:var(--font-mono);font-size:.7rem;color:var(--muted-2);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
+
+  /* CONTACT */
+  .contact-panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:56px;text-align:center;
+  }
+  .contact-panel h2{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px;}
+  .contact-panel p{color:var(--muted);max-width:480px;margin:0 auto 30px;}
+
+  footer{border-top:1px solid var(--line-soft);padding:36px 0;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-links{display:flex;gap:22px;list-style:none;font-family:var(--font-mono);font-size:.78rem;}
+  .footer-links a{color:var(--muted);text-decoration:none;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-note{font-family:var(--font-mono);font-size:.72rem;color:var(--muted-2);}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .services{grid-template-columns:1fr;}
+    .stack-grid{grid-template-columns:repeat(2,1fr);}
+    .about-grid{grid-template-columns:1fr;}
+    .process-item{grid-template-columns:40px 1fr;}
+    .nav-links{display:none;}
+    .contact-panel{padding:32px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Melwin <span class="tag">● technical portfolio</span></div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="/">← zenstack.ae</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot live"></span> All systems live — built and run by one engineer</div>
+      <h1>Backend-focused full-stack engineer, <span>shipping production systems — not mockups.</span></h1>
+      <p class="lede">I'm Melwin, based in Dubai. 7+ years building backend systems, APIs and infrastructure. Everything below is running in production right now, on infrastructure I provisioned and maintain myself.</p>
+      <div class="cta-row">
+        <a href="#work" class="btn btn-primary">View live systems ↓</a>
+        <a href="mailto:hello@zenstack.ae" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <div class="status-panel-head">
+        <div class="l"><span class="dot live"></span> zenstack-infra / production</div>
+        <span>uptime monitor</span>
+      </div>
+      <div class="status-panel-body">
+        <div class="status-row">
+          <span class="name"><span class="dot live"></span> invoicetracker.zenstack.ae</span>
+          <span class="val">200 OK</span>
+        </div>
+        <div class="status-row">
+          <span class="name"><span class="dot live"></span> app.zenstack.ae/pos-dashboard</span>
+          <span class="val">200 OK</span>
+        </div>
+        <div class="status-row">
+          <span class="name"><span class="dot live"></span> savor.zenstack.ae</span>
+          <span class="val">200 OK</span>
+        </div>
+        <div class="status-row">
+          <span class="name"><span class="dot amber"></span> aws ec2 · single instance</span>
+          <span class="val" style="color:var(--amber)">3 services</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / SERVICES AS STATUS CARDS -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// live projects</div>
+      <h2>Not a portfolio. A running production environment.</h2>
+      <p>Every project here is deployed, monitored and actively used — not a Figma link or a localhost screenshot.</p>
+    </div>
+
+    <div class="services">
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Invoice Tracker</div>
+          <div class="service-status"><span class="dot live"></span> live</div>
+        </div>
+        <p class="service-desc">Custom invoice management app built on WordPress purely for auth/session handling — everything else is a dedicated MySQL table with raw $wpdb queries, a self-contained page template, Chart.js reporting, and Excel/CSV import-export.</p>
+        <div class="tag-row">
+          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">$wpdb</span><span class="tag">Chart.js</span>
+        </div>
+        <div class="service-meta">
+          <span>invoicetracker.zenstack.ae</span>
+          <a href="https://invoicetracker.zenstack.ae/" target="_blank" rel="noopener">Visit →</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">POS Dashboard</div>
+          <div class="service-status"><span class="dot live"></span> live</div>
+        </div>
+        <p class="service-desc">Point-of-sale management platform with a web dashboard plus native iOS and Android apps — covering sales tracking, inventory and reporting for small retail operations.</p>
+        <div class="tag-row">
+          <span class="tag">Web</span><span class="tag">iOS</span><span class="tag">Android</span>
+        </div>
+        <div class="service-meta">
+          <span>app.zenstack.ae/pos-dashboard</span>
+          <a href="https://app.zenstack.ae/pos-dashboard/" target="_blank" rel="noopener">Visit →</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Savor</div>
+          <div class="service-status"><span class="dot live"></span> live</div>
+        </div>
+        <p class="service-desc">A WordPress-based site built and customized end to end — theme setup, hosting, and ongoing maintenance handled on the same infrastructure as everything else here.</p>
+        <div class="tag-row">
+          <span class="tag">WordPress</span><span class="tag">Nginx</span><span class="tag">SSL</span>
+        </div>
+        <div class="service-meta">
+          <span>savor.zenstack.ae</span>
+          <a href="https://savor.zenstack.ae/" target="_blank" rel="noopener">Visit →</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">This Infrastructure</div>
+          <div class="service-status"><span class="dot amber"></span> self-managed</div>
+        </div>
+        <p class="service-desc">A single AWS EC2 instance running three production services side by side — Nginx reverse proxying multiple domains, isolated MySQL databases, Certbot-issued SSL, and swap-tuned for a constrained memory footprint.</p>
+        <div class="tag-row">
+          <span class="tag">AWS EC2</span><span class="tag">Nginx</span><span class="tag">Docker</span><span class="tag">Quarkus</span>
+        </div>
+        <div class="service-meta">
+          <span>one server, three domains</span>
+          <span>—</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="section" id="stack">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// technical stack</div>
+      <h2>What's actually running under the hood</h2>
+      <p>Backend-first, with enough frontend and infra to ship a project end to end alone.</p>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-group">
+        <h4>Backend</h4>
+        <ul><li>Java</li><li>Spring Boot</li><li>Quarkus</li><li>Microservices</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Auth & Identity</h4>
+        <ul><li>OAuth2 / OIDC</li><li>WSO2 IAM</li><li>Session mgmt</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Data & Messaging</h4>
+        <ul><li>Kafka</li><li>Redis</li><li>MySQL</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Infra & Ops</h4>
+        <ul><li>Docker</li><li>Kubernetes</li><li>AWS</li><li>CI/CD</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Observability</h4>
+        <ul><li>Splunk</li><li>AppDynamics</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Frontend</h4>
+        <ul><li>JavaScript</li><li>Chart.js</li><li>Responsive UI</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>CMS</h4>
+        <ul><li>WordPress</li><li>Custom theming</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Mobile</h4>
+        <ul><li>iOS</li><li>Android</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// how a project runs</div>
+      <h2>Straightforward, direct, no agency layers</h2>
+      <p>You're talking to the engineer building it — not an account manager relaying to a dev team.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item">
+        <span class="idx">01</span>
+        <div><h3>Scope the problem</h3><p>A short call or written brief — what you need, what's already in place, what "done" looks like.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="idx">02</span>
+        <div><h3>Fixed quote, clear timeline</h3><p>No hourly ambiguity. You know the cost and delivery date before work starts.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="idx">03</span>
+        <div><h3>Build with visibility</h3><p>Regular check-ins on progress, not a black box until the final delivery date.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="idx">04</span>
+        <div><h3>Ship and support</h3><p>Deployed, monitored, and supported after launch — the same way I run my own projects.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">// about</div>
+      <h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px;">Melwin</h2>
+      <p><strong>Backend-focused Full Stack Engineer</strong> with 7+ years of experience across Java, Spring Boot, Quarkus, microservices, and authentication systems. Based in Dubai, UAE.</p>
+      <p>Day to day, I work on production backend systems. Outside of that, I design, build and run these projects end to end — architecture, code, deployment and the server they live on.</p>
+      <p>Open to freelance and contract work: backend systems, API development, WordPress-integrated custom applications, and infrastructure setup.</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="n">7+</div><div class="l">Years experience</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Live production apps</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Server, self-managed</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">Built solo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="eyebrow" style="justify-content:center;">// get in touch</div>
+      <h2>Have a project in mind?</h2>
+      <p>Whether it's a backend system, an API, or a custom app on top of WordPress — happy to talk through it.</p>
+      <a href="mailto:hello@zenstack.ae?subject=Zenstack%20-%20Project%20Inquiry" class="btn btn-primary">Email hello@zenstack.ae</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-note">© 2026 Zenstack — Melwin. Dubai, UAE.</div>
+    <ul class="footer-links">
+      <li><a href="mailto:hello@zenstack.ae">Email</a></li>
+      <li><a href="https://invoicetracker.zenstack.ae/" target="_blank" rel="noopener">Invoice Tracker</a></li>
+      <li><a href="https://savor.zenstack.ae/" target="_blank" rel="noopener">Savor</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
