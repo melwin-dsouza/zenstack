@@ -203,7 +203,7 @@
   @media (max-width:860px){
     .hero-grid{grid-template-columns:1fr;}
     .services{grid-template-columns:1fr;}
-    .stack-grid{grid-template-columns:repeat(2,1fr);}
+    .stack-grid{grid-template-columns:repeat(1,1fr);}
     .about-grid{grid-template-columns:1fr;}
     .process-item{grid-template-columns:40px 1fr;}
     .nav-links{display:none;}
@@ -215,12 +215,12 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">Melwin <span class="tag">● technical portfolio</span></div>
+    <div class="logo">Melwin <span class="tag">● portfolio</span></div>
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
       <li><a href="/">← zenstack.ae</a></li>
     </ul>
   </div>
@@ -230,12 +230,12 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow"><span class="dot live"></span> All systems live — built and run by one engineer</div>
-      <h1>Backend-focused full-stack engineer, <span>shipping production systems — not mockups.</span></h1>
-      <p class="lede">I'm Melwin, based in Dubai. 7+ years building backend systems, APIs and infrastructure. Everything below is running in production right now, on infrastructure I provisioned and maintain myself.</p>
+      <div class="eyebrow"><span class="dot live"></span> Backend-focused Full-Stack Engineer</div>
+      <h1>Building software that <span>solves real problems.</span></h1>
+      <p class="lede">I'm Melwin, a software engineer based in Dubai with 7+ years of experience building production systems. My focus is backend engineering — APIs, microservices, authentication, integrations, cloud and distributed systems. But I don't stop at writing code. When I build something independently, I take it from problem → architecture → code → deployment → production.</p>
       <div class="cta-row">
-        <a href="#work" class="btn btn-primary">View live systems ↓</a>
-        <a href="mailto:hello@zenstack.ae" class="btn btn-ghost">Get in touch</a>
+        <a href="#work" class="btn btn-primary">View my work ↓</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
 
@@ -266,15 +266,51 @@
   </div>
 </section>
 
-<!-- WORK / SERVICES AS STATUS CARDS -->
+<!-- WHAT I DO -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// what I actually do</div>
+      <h2>From business problem to working system</h2>
+    </div>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Turn business problems into software</div>
+        </div>
+        <p class="service-desc">A business process that currently lives in Excel, email or manual work can often become a proper application. I design and build the system around the actual workflow rather than starting with a technology.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Build the backend that makes applications work</div>
+        </div>
+        <p class="service-desc">I specialise in APIs, business logic, integrations, authentication, data processing and distributed systems — the parts users may not see, but that make an application reliable.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Connect systems that don't naturally talk to each other</div>
+        </div>
+        <p class="service-desc">POS systems, databases, third-party APIs, identity providers and cloud services often need to work together. I build the integrations and workflows that connect them — and design user-centric dashboards or an entire ERP/CRM if needed. I can also build Android and iOS apps.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Take software all the way to production</div>
+        </div>
+        <p class="service-desc">I can provision the infrastructure, deploy the application, configure domains and SSL, monitor it and maintain it after launch.</p>
+      </div>
+    </div>
+    <p style="margin-top:24px;color:var(--muted);font-family:var(--font-mono);font-size:.88rem;">In simple terms: give me a business problem, and I can help turn it into a working system.</p>
+  </div>
+</section>
+
+<!-- WORK -->
 <section class="section" id="work">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">// live projects</div>
-      <h2>Not a portfolio. A running production environment.</h2>
-      <p>Every project here is deployed, monitored and actively used — not a Figma link or a localhost screenshot.</p>
+      <div class="eyebrow">// things I've actually built</div>
+      <h2>Real systems, not portfolio demos</h2>
+      <p>These aren't demo projects created to fill a portfolio. They are real systems solving real problems — deployed, maintained and running on infrastructure I manage.</p>
     </div>
-
     <div class="services">
 
       <div class="service-card">
@@ -282,13 +318,13 @@
           <div class="service-name">Invoice Tracker</div>
           <div class="service-status"><span class="dot live"></span> live</div>
         </div>
-        <p class="service-desc">Custom invoice management app built on WordPress purely for auth/session handling — everything else is a dedicated MySQL table with raw $wpdb queries, a self-contained page template, Chart.js reporting, and Excel/CSV import-export.</p>
+        <p class="service-desc">A lightweight invoice and receivables tracking system designed to replace manual spreadsheet-based tracking. Handles invoice records, status tracking, reporting and Excel/CSV import and export through a simple browser interface.</p>
         <div class="tag-row">
-          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">$wpdb</span><span class="tag">Chart.js</span>
+          <span class="tag">WordPress</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Chart.js</span>
         </div>
         <div class="service-meta">
           <span>invoicetracker.zenstack.ae</span>
-          <a href="https://invoicetracker.zenstack.ae/" target="_blank" rel="noopener">Visit →</a>
+          <a href="/me/invoice-tracker/">See how it works →</a>
         </div>
       </div>
 
@@ -297,13 +333,13 @@
           <div class="service-name">POS Dashboard</div>
           <div class="service-status"><span class="dot live"></span> live</div>
         </div>
-        <p class="service-desc">Point-of-sale management platform with a web dashboard plus native iOS and Android apps — covering sales tracking, inventory and reporting for small retail operations.</p>
+        <p class="service-desc">A POS management platform with a web dashboard and mobile applications for sales tracking, inventory and reporting — making operational data accessible through a cleaner interface for people who run the business.</p>
         <div class="tag-row">
-          <span class="tag">Web</span><span class="tag">iOS</span><span class="tag">Android</span>
+          <span class="tag">Quarkus</span><span class="tag">Java</span><span class="tag">PostgreSQL</span><span class="tag">Flutter</span><span class="tag">REST APIs</span>
         </div>
         <div class="service-meta">
           <span>app.zenstack.ae/pos-dashboard</span>
-          <a href="https://app.zenstack.ae/pos-dashboard/" target="_blank" rel="noopener">Visit →</a>
+          <a href="/me/pos-dashboard/">See how it works →</a>
         </div>
       </div>
 
@@ -312,28 +348,13 @@
           <div class="service-name">Savor</div>
           <div class="service-status"><span class="dot live"></span> live</div>
         </div>
-        <p class="service-desc">A WordPress-based site built and customized end to end — theme setup, hosting, and ongoing maintenance handled on the same infrastructure as everything else here.</p>
+        <p class="service-desc">A WordPress-based business website where I handled the technical side from setup and customization through hosting, deployment, SSL and ongoing maintenance.</p>
         <div class="tag-row">
-          <span class="tag">WordPress</span><span class="tag">Nginx</span><span class="tag">SSL</span>
+          <span class="tag">WordPress</span><span class="tag">Nginx</span><span class="tag">AWS</span><span class="tag">SSL</span>
         </div>
         <div class="service-meta">
           <span>savor.zenstack.ae</span>
-          <a href="https://savor.zenstack.ae/" target="_blank" rel="noopener">Visit →</a>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-top">
-          <div class="service-name">This Infrastructure</div>
-          <div class="service-status"><span class="dot amber"></span> self-managed</div>
-        </div>
-        <p class="service-desc">A single AWS EC2 instance running three production services side by side — Nginx reverse proxying multiple domains, isolated MySQL databases, Certbot-issued SSL, and swap-tuned for a constrained memory footprint.</p>
-        <div class="tag-row">
-          <span class="tag">AWS EC2</span><span class="tag">Nginx</span><span class="tag">Docker</span><span class="tag">Quarkus</span>
-        </div>
-        <div class="service-meta">
-          <span>one server, three domains</span>
-          <span>—</span>
+          <a href="https://savor.zenstack.ae/" target="_blank" rel="noopener">Visit Savor →</a>
         </div>
       </div>
 
@@ -341,48 +362,139 @@
   </div>
 </section>
 
-<!-- STACK -->
+<!-- INFRA -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// beyond the code</div>
+      <h2>I don't just write the code</h2>
+    </div>
+    <div class="services">
+      <div class="service-card" style="grid-column:1/-1;">
+        <p class="service-desc">When I build something independently, I also take responsibility for where and how it runs. My current setup includes production services running on AWS, with routing, isolated databases, SSL certificates, containerised services and monitoring in place.</p>
+        <div class="tag-row" style="margin-top:16px;align-items:center;">
+          <span class="tag">Application</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">API</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">Database</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">Server</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">Domain</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">SSL</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">Deployment</span><span style="color:var(--muted-2);">→</span>
+          <span class="tag">Monitoring</span>
+        </div>
+        <p class="service-desc" style="margin-top:16px;">It's not infrastructure for the sake of infrastructure. It's about being able to take ownership of the system after the code is written.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINEERING EXPERIENCE -->
 <section class="section" id="stack">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">// technical stack</div>
-      <h2>What's actually running under the hood</h2>
-      <p>Backend-first, with enough frontend and infra to ship a project end to end alone.</p>
+      <div class="eyebrow">// engineering experience</div>
+      <h2>Primarily backend, APIs and distributed systems</h2>
     </div>
     <div class="stack-grid">
       <div class="stack-group">
         <h4>Backend</h4>
-        <ul><li>Java</li><li>Spring Boot</li><li>Quarkus</li><li>Microservices</li></ul>
+        <ul><li>Java</li><li>Spring Boot</li><li>Quarkus</li><li>REST APIs</li><li>Microservices</li></ul>
       </div>
       <div class="stack-group">
-        <h4>Auth & Identity</h4>
-        <ul><li>OAuth2 / OIDC</li><li>WSO2 IAM</li><li>Session mgmt</li></ul>
+        <h4>Distributed systems</h4>
+        <ul><li>Kafka</li><li>Event-driven architecture</li><li>Saga</li><li>Outbox pattern</li><li>Workflow orchestration</li></ul>
       </div>
       <div class="stack-group">
-        <h4>Data & Messaging</h4>
-        <ul><li>Kafka</li><li>Redis</li><li>MySQL</li></ul>
+        <h4>Identity & security</h4>
+        <ul><li>OAuth2</li><li>OpenID Connect</li><li>WSO2</li><li>Authentication & authorization</li></ul>
       </div>
       <div class="stack-group">
-        <h4>Infra & Ops</h4>
-        <ul><li>Docker</li><li>Kubernetes</li><li>AWS</li><li>CI/CD</li></ul>
+        <h4>Data</h4>
+        <ul><li>PostgreSQL</li><li>MySQL</li><li>Oracle</li><li>DynamoDB</li><li>Redis</li></ul>
+      </div>
+      <div class="stack-group">
+        <h4>Cloud & infrastructure</h4>
+        <ul><li>AWS</li><li>Docker</li><li>Kubernetes</li><li>CI/CD</li><li>Linux</li><li>Nginx</li></ul>
       </div>
       <div class="stack-group">
         <h4>Observability</h4>
-        <ul><li>Splunk</li><li>AppDynamics</li></ul>
+        <ul><li>OpenTelemetry</li><li>Grafana</li><li>Splunk</li><li>AppDynamics</li><li>CloudWatch</li><li>AWS X-Ray</li></ul>
       </div>
       <div class="stack-group">
-        <h4>Frontend</h4>
-        <ul><li>JavaScript</li><li>Chart.js</li><li>Responsive UI</li></ul>
+        <h4>Frontend & applications</h4>
+        <ul><li>JavaScript</li><li>Angular</li><li>React</li><li>Chart.js</li><li>Flutter</li><li>Responsive web</li></ul>
       </div>
       <div class="stack-group">
-        <h4>CMS</h4>
-        <ul><li>WordPress</li><li>Custom theming</li></ul>
-      </div>
-      <div class="stack-group">
-        <h4>Mobile</h4>
-        <ul><li>iOS</li><li>Android</li></ul>
+        <h4>CMS & business apps</h4>
+        <ul><li>WordPress</li><li>Custom PHP</li><li>WordPress integrations</li><li>Excel/CSV workflows</li></ul>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// professional experience</div>
+      <h2>7+ years across enterprise and fintech</h2>
+      <p>My experience spans large enterprise environments and financial technology, where reliability, security and integration matter as much as writing the code itself.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item">
+        <span class="idx" style="color:var(--green);">Now</span>
+        <div>
+          <h3>Senior Software Engineer</h3>
+          <p style="font-family:var(--font-mono);font-size:.78rem;color:var(--muted-2);margin-bottom:8px;">Government Entity — Dubai, UAE</p>
+          <p>Working on production identity and authentication systems, building backend services and integrations using Java, Quarkus, WSO2, Redis, Docker and MySQL.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <span class="idx">Prev</span>
+        <div>
+          <h3>RAKBANK · Siemens Technology · Delta Air Lines</h3>
+          <p style="font-family:var(--font-mono);font-size:.78rem;color:var(--muted-2);margin-bottom:8px;">Backend & full-stack engineering roles</p>
+          <p>Worked across backend and full-stack engineering roles, building APIs, microservices, integrations and production systems used in enterprise environments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// how I approach engineering</div>
+      <h2>Practical over impressive</h2>
+    </div>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Start with the problem</div>
+        </div>
+        <p class="service-desc">I first try to understand what is actually inefficient, expensive, repetitive or difficult today.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Keep the solution practical</div>
+        </div>
+        <p class="service-desc">The best architecture isn't necessarily the most complicated one. I prefer solutions that are understandable, maintainable and appropriate for the problem.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Build for production</div>
+        </div>
+        <p class="service-desc">Security, failure handling, observability, deployment and maintenance are part of building the system — not things to think about at the end.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Own the outcome</div>
+        </div>
+        <p class="service-desc">I like being responsible for the complete system. If something doesn't work in production, I want to understand why and fix the actual problem.</p>
+      </div>
+    </div>
+    <p style="margin-top:24px;padding:18px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-family:var(--font-mono);font-size:.88rem;color:var(--muted);">Good engineering isn't about using more technology. It's about using the right technology to solve the problem.</p>
   </div>
 </section>
 
@@ -390,26 +502,29 @@
 <section class="section" id="process">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">// how a project runs</div>
-      <h2>Straightforward, direct, no agency layers</h2>
-      <p>You're talking to the engineer building it — not an account manager relaying to a dev team.</p>
+      <div class="eyebrow">// if we work together</div>
+      <h2>How a project actually runs</h2>
     </div>
     <div class="process-list">
       <div class="process-item">
         <span class="idx">01</span>
-        <div><h3>Scope the problem</h3><p>A short call or written brief — what you need, what's already in place, what "done" looks like.</p></div>
+        <div><h3>Understand the problem</h3><p>We start with what you're trying to achieve, how you currently do it and where the problem actually is.</p></div>
       </div>
       <div class="process-item">
         <span class="idx">02</span>
-        <div><h3>Fixed quote, clear timeline</h3><p>No hourly ambiguity. You know the cost and delivery date before work starts.</p></div>
+        <div><h3>Design the simplest useful solution</h3><p>I'll work out the architecture, technology and scope needed to solve the problem without overengineering it.</p></div>
       </div>
       <div class="process-item">
         <span class="idx">03</span>
-        <div><h3>Build with visibility</h3><p>Regular check-ins on progress, not a black box until the final delivery date.</p></div>
+        <div><h3>Build and iterate</h3><p>You get a working system, not just a specification. We can validate the important parts early and adjust as we go.</p></div>
       </div>
       <div class="process-item">
         <span class="idx">04</span>
-        <div><h3>Ship and support</h3><p>Deployed, monitored, and supported after launch — the same way I run my own projects.</p></div>
+        <div><h3>Put it into production</h3><p>Deployment, infrastructure and the final handover are part of the work.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="idx">05</span>
+        <div><h3>Keep it running</h3><p>If you need ongoing support, I can continue maintaining and improving the system after launch.</p></div>
       </div>
     </div>
   </div>
@@ -419,17 +534,19 @@
 <section class="section" id="about">
   <div class="wrap about-grid">
     <div>
-      <div class="eyebrow">// about</div>
-      <h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px;">Melwin</h2>
-      <p><strong>Backend-focused Full Stack Engineer</strong> with 7+ years of experience across Java, Spring Boot, Quarkus, microservices, and authentication systems. Based in Dubai, UAE.</p>
-      <p>Day to day, I work on production backend systems. Outside of that, I design, build and run these projects end to end — architecture, code, deployment and the server they live on.</p>
-      <p>Open to freelance and contract work: backend systems, API development, WordPress-integrated custom applications, and infrastructure setup.</p>
+      <div class="eyebrow">// about me</div>
+      <h2 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px;">From enterprise systems to complete ownership</h2>
+      <p>I'm Melwin, a software engineer based in Dubai. I've spent the last 7+ years building production software, mainly around Java, Spring Boot, microservices, APIs, cloud infrastructure and identity systems.</p>
+      <p>My professional work has taught me how to build software where reliability, security and scale matter.</p>
+      <p>My side projects give me something different: complete ownership. I get to start with an idea or a business problem, decide how it should work, write the application, deploy it, configure the infrastructure and keep it running.</p>
+      <p>That's probably the part of engineering I enjoy most — taking something from an idea to something people can actually use.</p>
+      <p>I'm currently open to interesting engineering, freelance and contract opportunities where I can solve real problems with technology.</p>
     </div>
     <div class="stat-row">
-      <div class="stat"><div class="n">7+</div><div class="l">Years experience</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">Live production apps</div></div>
-      <div class="stat"><div class="n">1</div><div class="l">Server, self-managed</div></div>
-      <div class="stat"><div class="n">100%</div><div class="l">Built solo</div></div>
+      <div class="stat"><div class="n">7+</div><div class="l">Years building software</div></div>
+      <div class="stat"><div class="n">Prod</div><div class="l">Enterprise + independent systems</div></div>
+      <div class="stat"><div class="n">E2E</div><div class="l">Architecture → code → deployment</div></div>
+      <div class="stat"><div class="n">Dubai</div><div class="l">UAE-based engineer</div></div>
     </div>
   </div>
 </section>
@@ -439,20 +556,24 @@
   <div class="wrap">
     <div class="contact-panel">
       <div class="eyebrow" style="justify-content:center;">// get in touch</div>
-      <h2>Have a project in mind?</h2>
-      <p>Whether it's a backend system, an API, or a custom app on top of WordPress — happy to talk through it.</p>
-      <a href="mailto:hello@zenstack.ae?subject=Zenstack%20-%20Project%20Inquiry" class="btn btn-primary">Email hello@zenstack.ae</a>
+      <h2>Have a problem worth solving?</h2>
+      <p>If you have a business process that is too manual, systems that need to talk to each other, an application that needs a backend, or simply an idea you're trying to turn into something real — let's talk.</p>
+      <p>I'm particularly interested in backend engineering, APIs, integrations, business applications and systems that need to work reliably in production.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:26px;">
+        <a href="mailto:info@zenstack.ae" class="btn btn-primary">Email — info@zenstack.ae</a>
+        <a href="http://www.linkedin.com/in/melwin-dsouza-3032b4110" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn →</a>
+        <a href="https://github.com/melwin-dsouza" target="_blank" rel="noopener" class="btn btn-ghost">GitHub →</a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap footer-inner">
-    <div class="footer-note">© 2026 Zenstack — Melwin. Dubai, UAE.</div>
+    <div class="footer-note">© 2026 Melwin. Dubai, UAE.</div>
     <ul class="footer-links">
-      <li><a href="mailto:hello@zenstack.ae">Email</a></li>
-      <li><a href="https://invoicetracker.zenstack.ae/" target="_blank" rel="noopener">Invoice Tracker</a></li>
-      <li><a href="https://savor.zenstack.ae/" target="_blank" rel="noopener">Savor</a></li>
+      <li><a href="/">← zenstack.ae</a></li>
+      <li><a href="mailto:info@zenstack.ae">Email</a></li>
     </ul>
   </div>
 </footer>

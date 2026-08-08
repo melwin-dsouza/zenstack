@@ -19,6 +19,7 @@
     --muted-2:#5D6B82;
     --amber:#FFB020;
     --green:#3DD68C;
+    --red:#FF6B6B;
     --font-display:'Space Grotesk',sans-serif;
     --font-body:'Inter',sans-serif;
   }
@@ -34,8 +35,8 @@
   .dot{animation:pulse 2s ease-in-out infinite;}
 
   nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(11,18,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  .nav-inner{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;}
-  .logo{font-family:var(--font-display);font-weight:700;font-size:1.2rem;}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:var(--font-display);font-weight:900;font-size:1.8rem;}
   .nav-links{display:flex;gap:32px;list-style:none;font-size:.92rem;}
   .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;}
   .nav-links a:hover{color:var(--text);}
@@ -102,9 +103,39 @@
   .about-stats .stat .l{font-size:.78rem;color:var(--muted-2);margin-top:4px;}
 
   /* CONTACT */
-  .contact-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:56px;text-align:center;}
-  .contact-panel h2{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px;}
-  .contact-panel p{color:var(--muted);max-width:480px;margin:0 auto 30px;}
+  .contact-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:56px;}
+  .contact-panel-inner{max-width:640px;margin:0 auto;}
+  .contact-head{text-align:center;margin-bottom:36px;}
+  .contact-head h2{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px;}
+  .contact-head p{color:var(--muted);max-width:480px;margin:0 auto;}
+
+  .contact-form{display:flex;flex-direction:column;gap:16px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field label{display:block;font-family:var(--font-mono, var(--font-body));font-size:.8rem;color:var(--muted);margin-bottom:8px;font-weight:500;}
+  .field input,
+  .field textarea{
+    width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+    padding:.85rem 1rem;color:var(--text);font-family:var(--font-body);font-size:.95rem;
+    transition:border-color .2s;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder{color:var(--muted-2);}
+  .field input:focus,
+  .field textarea:focus{outline:none;border-color:var(--amber);}
+  .field textarea{resize:vertical;min-height:120px;}
+  .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-submit{
+    background:var(--amber);color:#1a1206;border:none;border-radius:8px;
+    padding:1rem 1.6rem;font-size:.95rem;font-weight:700;cursor:pointer;
+    font-family:var(--font-body);transition:all .2s;margin-top:4px;
+  }
+  .form-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,176,32,.25);}
+  .form-note{font-size:.8rem;color:var(--muted-2);text-align:center;margin-top:6px;}
+  .form-status{
+    display:none;padding:.9rem 1rem;border-radius:8px;font-size:.88rem;text-align:center;margin-top:4px;
+  }
+  .form-status.success{display:block;background:rgba(61,214,140,.1);border:1px solid var(--green);color:var(--green);}
+  .form-status.error{display:block;background:rgba(255,107,107,.1);border:1px solid var(--red);color:var(--red);}
 
   footer{border-top:1px solid var(--line-soft);padding:36px 0;}
   .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:.85rem;color:var(--muted-2);}
@@ -117,6 +148,7 @@
     .about-panel{grid-template-columns:1fr;padding:32px 24px;}
     .nav-links{display:none;}
     .contact-panel{padding:32px 22px;}
+    .form-row{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -143,7 +175,7 @@
     <div class="cta-row">
       <a href="#contact" class="btn btn-primary">Start a project</a>
       <a href="#work" class="btn btn-ghost">See my work</a>
-      <a href="/portfolio" class="btn btn-ghost">About me</a>
+      <a href="/me" class="btn btn-ghost">About me</a>
     </div>
   </div>
 </section>
@@ -278,12 +310,40 @@
 <section class="section" id="contact">
   <div class="wrap">
     <div class="contact-panel">
-      <div class="eyebrow" style="justify-content:center;display:inline-flex;">Get in touch</div>
-      <h2>Have a business problem worth solving?</h2>
-      <p>If you're replacing a manual process, building a new application, connecting existing systems or simply have an idea you'd like to turn into something real, let's talk.
+      <div class="contact-panel-inner">
+        <div class="contact-head">
+          <div class="eyebrow" style="justify-content:center;display:inline-flex;">Get in touch</div>
+          <h2>Have a business problem worth solving?</h2>
+          <p>If you're replacing a manual process, building a new application, connecting existing systems or simply have an idea you'd like to turn into something real, let's talk. Tell me what you're trying to build below.</p>
+        </div>
 
-Tell me what you're trying to build. We can figure out together whether software is the right solution — and what the simplest useful version would look like.</p>
-      <a href="mailto:info@zenstack.ae?subject=Zenstack%20-%20Project%20Inquiry" class="btn btn-primary">Email — info@zenstack.ae</a>
+        <!-- Formspree form: replace YOUR_FORM_ID with your actual Formspree endpoint ID -->
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xjybgaqn" method="POST">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="company">Company <span style="color:var(--muted-2);font-weight:400;">(optional)</span></label>
+            <input type="text" id="company" name="company" placeholder="Your business name">
+          </div>
+          <div class="field">
+            <label for="message">What are you trying to build?</label>
+            <textarea id="message" name="message" placeholder="Tell me a bit about the problem you're trying to solve..." required></textarea>
+          </div>
+          <!-- honeypot field to reduce spam -->
+          <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off">
+          <button type="submit" class="form-submit">Send message</button>
+          <div class="form-note">Usually replies within 1–2 business days.</div>
+          <div id="formStatus" class="form-status"></div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -296,6 +356,40 @@ Tell me what you're trying to build. We can figure out together whether software
     </ul>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+    const submitBtn = form.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        status.textContent = "Thanks — your message has been sent. I'll get back to you soon.";
+        status.className = 'form-status success';
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong. Please try emailing info@zenstack.ae directly.";
+        status.className = 'form-status error';
+      }
+    } catch (err) {
+      status.textContent = "Something went wrong. Please try emailing info@zenstack.ae directly.";
+      status.className = 'form-status error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>
 
 </body>
 </html>
