@@ -223,13 +223,13 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">Melwin <span class="tag">● Techincal Portfolio</span></div>
+    <div class="logo">Melwin <span class="tag">● Technical Portfolio</span></div>
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="/">← zenstack.ae</a></li>
+      <li><a href="/"><b>← zenstack.ae</b></a></li>
     </ul>
   </div>
 </nav>
@@ -271,7 +271,7 @@
         </div>
         <div class="service-meta">
           <span>invoicetracker.zenstack.ae</span>
-          <a href="/invoice-tracker/">See how it works →</a>
+          <a href="/invoice-tracker/"  target="_blank" rel="noopener">See how it works →</a>
         </div>
       </div>
 
@@ -286,7 +286,7 @@
         </div>
         <div class="service-meta">
           <span>app.zenstack.ae/pos-dashboard</span>
-          <a href="/pos-dashboard/">See how it works →</a>
+          <a href="/pos-dashboard/" target="_blank" rel="noopener">See how it works →</a>
         </div>
       </div>
 
@@ -593,6 +593,40 @@
     </ul>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+    const submitBtn = form.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        status.textContent = "Thanks — your message has been sent. I'll get back to you soon.";
+        status.className = 'form-status success';
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong. Please try emailing info@zenstack.ae directly.";
+        status.className = 'form-status error';
+      }
+    } catch (err) {
+      status.textContent = "Something went wrong. Please try emailing info@zenstack.ae directly.";
+      status.className = 'form-status error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>
 
 </body>
 </html>
