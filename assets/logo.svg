@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 650" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0B1220"/>
+  
+  <g id="logo-symbol">
+    <!-- Bottom Layer: Foundational Idea / Process (Muted Grey) -->
+    <polygon points="400,239 568,306 400,372 232,306" fill="#D5DBB8"/>
+    
+    <!-- Middle Layer: Software Engineering / Frame Logic (Slate Grey) -->
+    <path fill-rule="evenodd" d="
+      M 400,174 L 568,240 L 400,306 L 232,240 Z
+      M 400,193 L 267,240 L 400,287 L 533,240 Z" 
+      fill="#5D6D7E"/>
+      
+    <!-- Top Layer: Scalable Product / Solution (Accent Amber) -->
+    <polygon points="400,108 568,174 400,240 232,174" fill="#FFB020"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="400" y="480" font-family="'Space Grotesk', 'Inter', 'Helvetica Neue', sans-serif" font-size="52" font-weight="700" letter-spacing="8" fill="#E7ECF3" text-anchor="middle">ZENSTACK</text>
+</svg>
