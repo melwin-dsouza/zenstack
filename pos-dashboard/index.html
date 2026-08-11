@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POS Dashboard — Melwin</title>
 <meta name="robots" content="noindex, nofollow">
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon-96x96.png">
+
+<!-- Apple -->
+<link rel="apple-touch-icon" sizes="152x152" href="../assets/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-icon-180x180.png">
+
+<!-- Android / PWA -->
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/android-icon-192x192.png">
+<link rel="manifest" href="../assets/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -62,14 +75,6 @@
   h2{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin-bottom:16px;}
   p{color:var(--muted);margin-bottom:12px;}
 
-  .media-placeholder{
-    background:var(--panel);border:1.5px dashed var(--line);border-radius:12px;
-    padding:56px 22px;text-align:center;color:var(--muted-2);font-size:.88rem;margin-bottom:16px;
-    font-family:var(--font-body);
-  }
-  .media-placeholder b{display:block;color:var(--muted);font-family:var(--font-display);font-size:1rem;margin-bottom:6px;}
-  .shots-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-
   .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
   .tag{
     font-family:var(--font-mono);font-size:.72rem;color:var(--muted);
@@ -80,16 +85,52 @@
   .feature-list li{padding-left:22px;position:relative;color:var(--muted);}
   .feature-list li::before{content:"→";position:absolute;left:0;color:var(--amber);font-weight:700;font-family:var(--font-mono);}
 
-  .note{
-    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);
-    border-radius:8px;padding:16px 20px;font-size:.9rem;color:var(--text);margin-top:10px;
+  /* App screenshot strip — sized for tall mobile screenshots (397x862) */
+  .shots-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:12px;
+  }
+  .shot-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    display:flex;
+    flex-direction:column;
+  }
+  .shot-frame{
+    width:100%;
+    aspect-ratio:397 / 862;
+    background:var(--bg);
+    overflow:hidden;
+  }
+  .shot-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+  }
+  .shot-caption{
+    padding:8px 6px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:.66rem;
+    color:var(--muted-2);
+    border-top:1px solid var(--line);
+    line-height:1.3;
+  }
+
+  @media (max-width:700px){
+    .shots-grid{grid-template-columns:repeat(3, 1fr);}
+  }
+  @media (max-width:420px){
+    .shots-grid{grid-template-columns:repeat(2, 1fr);}
   }
 
   footer{padding:40px 0;border-top:1px solid var(--line-soft);font-family:var(--font-mono);font-size:.8rem;color:var(--muted-2);}
-
-  @media (max-width:600px){
-    .shots-grid{grid-template-columns:1fr;}
-  }
 </style>
 </head>
 <body>
@@ -126,13 +167,33 @@
     <div class="eyebrow">// a look inside</div>
     <h2>Private system, visual walkthrough</h2>
     <p>This is a private, authenticated system used for real store operations — it isn't publicly browsable, so here's a look at what it actually does.</p>
+
     <div class="shots-grid">
-      <div class="media-placeholder"><b>Web dashboard screenshot</b>Add a screenshot of the sales dashboard here</div>
-      <div class="media-placeholder"><b>Inventory screenshot</b>Add a screenshot of the inventory view here</div>
-      <div class="media-placeholder"><b>Mobile app screenshot</b>Add an iOS/Android screenshot here</div>
-      <div class="media-placeholder"><b>Short walkthrough video</b>Embed a 30–60s screen recording here</div>
+      <div class="shot-card">
+        <div class="shot-frame"><img src="../assets/pos-dashboard/login.png" alt="POS Dashboard login screen"></div>
+        <div class="shot-caption">Login</div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame"><img src="../assets/pos-dashboard/dashboard.png" alt="POS Dashboard home screen"></div>
+        <div class="shot-caption">Dashboard</div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame"><img src="../assets/pos-dashboard/daily-orders-revenue.png" alt="POS Dashboard daily orders and revenue"></div>
+        <div class="shot-caption">Daily Orders & Revenue</div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame"><img src="../assets/pos-dashboard/hourly orders.png" alt="POS Dashboard hourly orders"></div>
+        <div class="shot-caption">Hourly Orders</div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame"><img src="../assets/pos-dashboard/daily reports.png" alt="POS Dashboard daily reports"></div>
+        <div class="shot-caption">Daily Reports</div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-frame"><img src="../assets/pos-dashboard/monthly sales.png" alt="POS Dashboard monthly sales"></div>
+        <div class="shot-caption">Monthly Sales</div>
+      </div>
     </div>
-    <div class="note">Tip: a 30–60 second screen recording (Loom or similar) tends to land better than static screenshots — it shows the whole flow in one shot.</div>
   </div>
 </section>
 

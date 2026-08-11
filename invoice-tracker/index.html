@@ -1,142 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invoice Tracker — Melwin</title>
-<meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0B1220;
-    --panel:#111B2E;
-    --line:#1F2B40;
-    --line-soft:#182338;
-    --text:#E7ECF3;
-    --muted:#8B96A8;
-    --muted-2:#5D6B82;
-    --amber:#FFB020;
-    --green:#3DD68C;
-    --font-display:'Space Grotesk',sans-serif;
-    --font-body:'Inter',sans-serif;
-    --font-mono:'JetBrains Mono',monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;
-    background-image:
-      linear-gradient(var(--line-soft) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
-    background-size:48px 48px;
-    background-position:-1px -1px;
-  }
-  a{color:var(--amber);text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px var(--green);}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-  .dot{animation:pulse 2s ease-in-out infinite;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Tracker — Melwin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon-96x96.png">
+  
+  <!-- Apple -->
+  <link rel="apple-touch-icon" sizes="152x152" href="../assets/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-icon-180x180.png">
+  
+  <!-- Android / PWA -->
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-icon-192x192.png">
+  <link rel="manifest" href="../assets/manifest.json">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B1220;
+      --panel: #111B2E;
+      --line: #1F2B40;
+      --line-soft: #182338;
+      --text: #E7ECF3;
+      --muted: #8B96A8;
+      --muted-2: #5D6B82;
+      --amber: #FFB020;
+      --green: #3DD68C;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
 
-  .eyebrow{
-    font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--muted-2);display:flex;align-items:center;gap:8px;margin-bottom:14px;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  nav{padding:26px 0;border-bottom:1px solid var(--line);}
-  .back{font-family:var(--font-mono);font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;}
-  .back:hover{color:var(--text);text-decoration:none;}
+    html {
+      scroll-behavior: smooth;
+    }
 
-  header{padding:56px 0 40px;}
-  .kicker{
-    display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.72rem;font-weight:600;
-    text-transform:uppercase;letter-spacing:.05em;color:var(--green);border:1px solid var(--line);
-    background:var(--panel);padding:5px 12px;border-radius:20px;margin-bottom:18px;
-  }
-  h1{font-family:var(--font-display);font-weight:700;font-size:clamp(1.8rem,4.4vw,2.6rem);margin-bottom:14px;letter-spacing:-.01em;}
-  .tagline{font-size:1.05rem;color:var(--muted);max-width:600px;}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image:
+        linear-gradient(var(--line-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+      background-size: 48px 48px;
+      background-position: -1px -1px;
+    }
 
-  section{padding:40px 0;border-top:1px solid var(--line-soft);}
-  h2{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin-bottom:16px;}
-  p{color:var(--muted);margin-bottom:12px;}
+    a {
+      color: var(--amber);
+      text-decoration: none;
+    }
 
-  .media-placeholder{
-    background:var(--panel);border:1.5px dashed var(--line);border-radius:12px;
-    padding:56px 22px;text-align:center;color:var(--muted-2);font-size:.88rem;margin-bottom:16px;
-    font-family:var(--font-body);
-  }
-  .media-placeholder b{display:block;color:var(--muted);font-family:var(--font-display);font-size:1rem;margin-bottom:6px;}
-  .shots-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    a:hover {
+      text-decoration: underline;
+    }
 
-  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
-  .tag{
-    font-family:var(--font-mono);font-size:.72rem;color:var(--muted);
-    border:1px solid var(--line);padding:5px 12px;border-radius:20px;background:var(--panel);
-  }
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-  .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:8px;}
-  .feature-list li{padding-left:22px;position:relative;color:var(--muted);}
-  .feature-list li::before{content:"→";position:absolute;left:0;color:var(--amber);font-weight:700;font-family:var(--font-mono);}
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+      box-shadow: 0 0 8px var(--green);
+    }
 
-  .note{
-    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);
-    border-radius:8px;padding:16px 20px;font-size:.9rem;color:var(--text);margin-top:10px;
-  }
+    @keyframes pulse {
 
-  footer{padding:40px 0;border-top:1px solid var(--line-soft);font-family:var(--font-mono);font-size:.8rem;color:var(--muted-2);}
+      0%,
+      100% {
+        opacity: 1;
+      }
 
-  @media (max-width:600px){
-    .shots-grid{grid-template-columns:1fr;}
-  }
-</style>
+      50% {
+        opacity: .4;
+      }
+    }
+
+    .dot {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    nav {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .back {
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    header {
+      padding: 56px 0 40px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--green);
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4.4vw, 2.6rem);
+      margin-bottom: 14px;
+      letter-spacing: -.01em;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    section {
+      padding: 40px 0;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* Shots Grid Layout */
+    .shots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    /* Card container for live screenshots */
+    .shots-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Mock browser top bar for a polished "window" look */
+    .browser-header {
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--line);
+      padding: 8px 12px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .browser-header .bdot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--muted-2);
+      opacity: 0.5;
+    }
+
+    .shots-card .shot-frame {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .shots-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .shots-card .caption {
+      padding: 10px 14px;
+      font-family: var(--font-mono);
+      font-size: .74rem;
+      color: var(--muted-2);
+      border-top: 1px solid var(--line);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      .shots-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: var(--panel);
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .feature-list li {
+      padding-left: 22px;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .feature-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--line-soft);
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--muted-2);
+    }
+  </style>
 </head>
+
 <body>
 
-<nav><div class="wrap"><a href="https://zenstack.ae" class="back">← Back to Zenstack.ae</a></div></nav>
+  <nav>
+    <div class="wrap"><a href="https://zenstack.ae" class="back">← Back to Zenstack.ae</a></div>
+  </nav>
 
-<header>
-  <div class="wrap">
-    <div class="kicker"><span class="dot"></span> Live system · Private access</div>
-    <h1>Invoice Tracker</h1>
-    <p class="tagline">Turning an Excel-based invoicing process into a simple, reliable web application.</p>
-  </div>
-</header>
-
-<section>
-  <div class="wrap">
-    <div class="eyebrow">// what it does</div>
-    <h2>Replacing spreadsheet-based invoice tracking</h2>
-    <p>A lightweight invoice and receivables tracking system designed to replace manual spreadsheet-based tracking. It handles invoice records, status tracking, reporting and Excel/CSV import and export through a simple browser interface.</p>
-    <ul class="feature-list">
-      <li>Create, edit and track invoices with status (paid, pending, overdue)</li>
-      <li>Follow-up history per invoice</li>
-      <li>Reporting dashboard with charts</li>
-      <li>Bulk import and export via Excel/CSV</li>
-    </ul>
-    <div class="tag-row">
-      <span class="tag">WordPress</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Chart.js</span>
+  <header>
+    <div class="wrap">
+      <div class="kicker"><span class="dot"></span> Live system · Private access</div>
+      <h1>Invoice Tracker</h1>
+      <p class="tagline">Turning an Excel-based invoicing process into a simple, reliable web application.</p>
     </div>
-  </div>
-</section>
+  </header>
 
-<section>
-  <div class="wrap">
-    <div class="eyebrow">// a look inside</div>
-    <h2>Private system, visual walkthrough</h2>
-    <p>This is a private, authenticated system used for real invoicing — it isn't publicly browsable, so here's a look at what it actually does.</p>
-    <div class="shots-grid">
-      <div class="media-placeholder"><b>Dashboard screenshot</b>Add a screenshot of the main invoice dashboard here</div>
-      <div class="media-placeholder"><b>Reporting screenshot</b>Add a screenshot of the charts/reporting view here</div>
-      <div class="media-placeholder"><b>Import/export screenshot</b>Add a screenshot of the Excel import modal here</div>
-      <div class="media-placeholder"><b>Short walkthrough video</b>Embed a 30–60s screen recording here</div>
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">// what it does</div>
+      <h2>Replacing spreadsheet-based invoice tracking</h2>
+      <p>A lightweight invoice and receivables tracking system designed to replace manual spreadsheet-based tracking. It
+        handles invoice records, status tracking, reporting and Excel/CSV import and export through a simple browser
+        interface.</p>
+      <ul class="feature-list">
+        <li>Create, edit and track invoices with status (paid, pending, overdue)</li>
+        <li>Follow-up history per invoice</li>
+        <li>Reporting dashboard with charts</li>
+        <li>Bulk import and export via Excel/CSV</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">WordPress</span><span class="tag">PHP</span><span class="tag">MySQL</span><span
+          class="tag">Chart.js</span>
+      </div>
     </div>
-    <div class="note">Tip: a 30–60 second screen recording (Loom or similar) tends to land better than static screenshots — it shows the whole flow in one shot.</div>
-  </div>
-</section>
+  </section>
 
-<footer><div class="wrap">© 2026 Melwin — <a href="https://zenstack.ae">Back to Zenstack.ae</a></div></footer>
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">// a look inside</div>
+      <h2>Private system, visual walkthrough</h2>
+      <p>This is a private, authenticated system used for real invoicing — it isn't publicly browsable, so here's a look
+        at what it actually does.</p>
+      <div class="shots-grid">
+        <div class="shots-card">
+          <div class="browser-header"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span></div>
+          <div class="shot-frame">
+            <img src="../assets/invoice-tracker/invoice-tracker-dashboard.png" alt="Invoice Tracker dashboard" />
+          </div>
+          <div class="caption">Dashboard</div>
+        </div>
+        <div class="shots-card">
+          <div class="browser-header"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span></div>
+          <div class="shot-frame">
+            <img src="../assets/invoice-tracker/invoice-tracker-reporting.png" alt="Invoice Tracker reporting view" />
+          </div>
+          <div class="caption">Reporting</div>
+        </div>
+        <div class="shots-card">
+          <div class="browser-header"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span></div>
+          <div class="shot-frame">
+            <img src="../assets/invoice-tracker/invoice-tracker-create-invoice.png" alt="Create Invoice" />
+          </div>
+          <div class="caption">Create Invoice</div>
+        </div>
+        <div class="shots-card">
+          <div class="browser-header"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span></div>
+          <div class="shot-frame">
+            <img src="../assets/invoice-tracker/invoice-tracker-followup.png" alt="Follow up" />
+          </div>
+          <div class="caption">Follow up</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© 2026 Melwin — <a href="https://zenstack.ae">Back to Zenstack.ae</a></div>
+  </footer>
 
 </body>
+
 </html>
