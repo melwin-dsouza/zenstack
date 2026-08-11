@@ -77,7 +77,10 @@
 
   nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(11,18,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
   .nav-inner{max-width:1080px;margin:0 auto;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;}
-  .logo{font-family:var(--font-display);font-weight:900;font-size:1.8rem;}
+  .logo{display:flex;align-items:center;}
+  .logo a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+  .logo img{width:34px;height:34px;object-fit:contain;border-radius:8px;}
+  .logo span{font-family:var(--font-display);font-weight:900;font-size:1.8rem;}
   .nav-links{display:flex;gap:32px;list-style:none;font-size:.92rem;}
   .nav-links a{color:var(--muted);text-decoration:none;transition:color .2s;}
   .nav-links a:hover{color:var(--text);}
@@ -197,7 +200,12 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">Zenstack</div>
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/android-chrome-192x192.png" alt="Zenstack logo">
+        <span>Zenstack</span>
+      </a>
+    </div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#work">Work</a></li>
